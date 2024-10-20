@@ -1,0 +1,16 @@
+update xw_recm_receivedmaster set recm_storeid=recm_departmentid;
+
+SELECT rd.recd_receiveddetailid,rd.recd_receivedmasterid,rd.recd_purchasedqty,
+td.trde_requiredqty,rd.recd_itemsid,td.trde_itemsid,rd.recd_unitprice,td.trde_unitprice
+FROM xw_trde_transactiondetail td 
+left join xw_recd_receiveddetail rd on rd.recd_receiveddetailid =td.trde_mtdid;
+
+update xw_trde_transactiondetail td set td.trde_unitprice=(
+SELECT recd_unitprice from xw_recd_receiveddetail rd WHERE rd.recd_receiveddetailid =td.trde_mtdid )
+WHERE trde_unitprice=0;
+
+SELECT sade_itemsid,trde_itemsid,sade_unitrate,sade_purchaserate,trde_unitprice from xw_sade_saledetail sd left join xw_trde_transactiondetail td on td.trde_trdeid=sd.sade_mattransdetailid;
+
+UPDATE xw_sade_saledetail sd SET sd.sade_unitrate=(
+SELECT td.trde_unitprice FROM xw_trde_transactiondetail td WHERE td.trde_trdeid=sd.sade_mattransdetailid
+) WHERE sade_unitrate=0

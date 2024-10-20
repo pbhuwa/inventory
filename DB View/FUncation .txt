@@ -1,0 +1,46 @@
+
+DELIMITER $$
+CREATE FUNCTION locationwise_issue(itemid int,locationid int)
+RETURNS int(15)
+    DETERMINISTIC
+BEGIN
+    DECLARE stockqty int(10);
+SET stockqty=0;
+ SELECT  SUM(issqty) INTO stockqty from xw_vw_locationwisestock WHERE trde_itemsid=itemid AND trde_locationid=locationid;
+ RETURN (stockqty);
+END
+
+
+DROP FUNCTION IF EXISTS `month_dep_requisition`;
+DELIMITER $$
+CREATE FUNCTION `month_dep_requisition`(`fyear` int,`mn` int,`did` int,isdep char,appst int,storeid int,locid int)
+ RETURNS int(15)
+BEGIN
+	 DECLARE countreq int(10);
+	 DECLARE apstatus varchar(25);
+SET countreq=0;
+IF (appst>=0 AND appst<=3)
+THEN
+SELECT  COUNT('*') INTO countreq  FROM  xw_vw_monthwise_dep_requisition WHERE fiscalyrs=fyear AND mnth=mn AND depid=did AND rema_isdep=isdep AND reqdep=storeid AND 
+locationid =locid AND appstatus=appst  ;
+ ELSE
+SELECT  COUNT('*') INTO countreq  FROM  xw_vw_monthwise_dep_requisition WHERE fiscalyrs=fyear AND mnth=mn AND depid=did AND rema_isdep=isdep AND reqdep=storeid AND 
+locationid =locid ;
+END IF;
+ RETURN (countreq);
+END;
+
+
+
+
+DELIMITER $$
+CREATE FUNCTION depwiseitem_issue(itemid int,depid int, locationid int,stroid int,fromdate ,todate char)
+RETURNS int(20)
+    DETERMINISTIC
+BEGIN
+    DECLARE issueqty int(10);
+SET issueqty=0;
+ SELECT  SUM(issqty) INTO issueqty from xw_vw_depwiseitemissue WHERE sade_itemsid=itemid AND sade_locationid=locationid
+AND storeid =stroid AND sama_depid=depid AND billdate BETWEEN fromdate AND todate ;
+ RETURN (issueqty);
+END

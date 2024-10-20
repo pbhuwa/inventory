@@ -1,0 +1,125 @@
+
+CREATE OR REPLACE View xw_vw_locationwisestock
+AS
+SELECT
+trde_itemsid,
+trde_locationid,
+SUM(trde_issueqty) as issqty
+FROM
+xw_trma_transactionmain tm LEFT JOIN  xw_trde_transactiondetail td ON
+tm.trma_trmaid = td.trde_trmaid WHERE
+td.trde_issueqty >0 AND tm.trma_received ='1' AND td.trde_status='O'
+GROUP BY 
+trde_itemsid, 
+trde_locationid
+
+
+CREATE OR REPLACE VIEW vw_issue_category
+AS
+SELECT
+	`mattp`.`maty_material` AS `maty_material`,
+	`sm`.`sama_billdatebs` AS `billdatebs`,
+	`d`.`dept_depid` AS `dept_depid`,
+	`it`.`itli_materialtypeid` AS `itli_materialtypeid`,
+	`d`.`dept_depname` AS `dept_depname`,
+	`d`.`dept_depcode` AS `dept_depcode`,
+	sum(
+		(
+			`sd`.`sade_qty` * `sd`.`sade_unitrate`
+		)
+	) AS `VALUE`,
+	0 AS `ReturnValue`
+FROM
+	(
+		(
+			(
+				(
+					`xw_dept_department` `d`
+					JOIN `xw_sama_salemaster` `sm`
+				)
+				JOIN `xw_itli_itemslist` `it`
+			)
+			JOIN `xw_sade_saledetail` `sd`
+		)
+		JOIN `xw_maty_materialtype` `mattp`
+	)
+WHERE
+	(
+		(
+			`d`.`dept_depid` = `sm`.`sama_depid`
+		)
+		AND (`sm`.`sama_st` = 'N')
+		AND (
+			`mattp`.`maty_materialtypeid` = `it`.`itli_materialtypeid`
+		)
+		AND (
+			`sm`.`sama_salemasterid` = `sd`.`sade_salemasterid`
+		)
+		AND (
+			`sd`.`sade_itemsid` = `it`.`itli_itemlistid`
+		)
+	)
+GROUP BY
+	`d`.`dept_depcode`,
+	`d`.`dept_depname`,
+	`d`.`dept_depid`,
+	`it`.`itli_materialtypeid`,
+	`mattp`.`maty_material`
+UNION
+	SELECT
+		`mattp`.`maty_material` AS `maty_material`,
+		`rm`.`rema_returndatebs` AS `billdatebs`,
+		`d`.`dept_depid` AS `dept_depid`,
+		`it`.`itli_materialtypeid` AS `itli_materialtypeid`,
+		`d`.`dept_depname` AS `dept_depname`,
+		`d`.`dept_depcode` AS `dept_depcode`,
+		0 AS `VALUE`,
+		sum(`rd`.`rede_total`) AS `RturnValue`
+	FROM
+		(
+			(
+				(
+					(
+						`xw_rede_returndetail` `rd`
+						JOIN `xw_rema_returnmaster` `rm`
+					)
+					JOIN `xw_itli_itemslist` `it`
+				)
+				JOIN `xw_dept_department` `d`
+			)
+			JOIN `xw_maty_materialtype` `mattp`
+		)
+	WHERE
+		(
+			(
+				`rd`.`rede_returnmasterid` = `rm`.`rema_returnmasterid`
+			)
+			AND (
+				`d`.`dept_depid` = `rm`.`rema_depid`
+			)
+			AND (
+				`mattp`.`maty_materialtypeid` = `it`.`itli_materialtypeid`
+			)
+			AND (`rm`.`rema_st` = 'N')
+			AND (
+				`rd`.`rede_itemsid` = `it`.`itli_itemlistid`
+			)
+		)
+	GROUP BY
+		`d`.`dept_depcode`,
+		`d`.`dept_depname`,
+		`d`.`dept_depid`,
+		`it`.`itli_materialtypeid`,
+		`mattp`.`maty_material`
+
+		
+CREATE OR REPLACE VIEW xw_vw_categoryreport
+AS
+select mattp.maty_material AS maty_material,sm.sama_billdatebs AS billdatebs,d.dept_depid AS dept_depid,it.itli_materialtypeid AS itli_materialtypeid,d.dept_depname AS dept_depname,d.dept_depcode AS dept_depcode,sum((sd.sade_qty * sd.sade_unitrate)) AS VALUE,0 AS ReturnValue from ((((xw_dept_department d join xw_sama_salemaster sm) join xw_itli_itemslist it) join xw_sade_saledetail sd) join xw_maty_materialtype mattp) where ((d.dept_depid = sm.sama_depid) and (sm.sama_st = 'N') and (mattp.maty_materialtypeid = it.itli_materialtypeid) and (sm.sama_salemasterid = sd.sade_salemasterid) and (sd.sade_itemsid = it.itli_itemlistid)) group by d.dept_depcode,d.dept_depname,d.dept_depid,it.itli_materialtypeid,mattp.maty_material union select mattp.maty_material AS maty_material,rm.rema_returndatebs AS billdatebs,d.dept_depid AS dept_depid,it.itli_materialtypeid AS itli_materialtypeid,d.dept_depname AS dept_depname,d.dept_depcode AS dept_depcode,0 AS VALUE,sum(rd.rede_total) AS RturnValue from ((((xw_rede_returndetail rd join xw_rema_returnmaster rm) join xw_itli_itemslist it) join xw_dept_department d) join xw_maty_materialtype mattp) where ((rd.rede_returnmasterid = rm.rema_returnmasterid) and (d.dept_depid = rm.rema_depid) and (mattp.maty_materialtypeid = it.itli_materialtypeid) and (rm.rema_st = 'N') and (rd.rede_itemsid = it.itli_itemlistid)) group by d.dept_depcode,d.dept_depname,d.dept_depid,it.itli_materialtypeid,mattp.maty_material
+
+
+
+
+CREATE OR REPLACE VIEW xw_vw_depwiseitemissue
+AS
+SELECT sd.sade_itemsid, sm.sama_depid, sm.sama_storeid storeid, sama_billdatebs billdate,( CASE WHEN ( ( trim( LEADING '0' FROM substring_index( substring_index( sama_billdatebs, '/', 2), '/' ,- (1) ) ) >= 1 ) AND ( trim( LEADING '0' FROM substring_index( substring_index( sama_billdatebs, '/', 2 ), '/' ,- (1) ) ) <= 3 ) ) THEN concat( CONVERT ( substr( ( substring_index( sama_billdatebs, '/', 1 ) - 1 ), 2, 4 ) USING latin1 ), '/', substr( substring_index( sama_billdatebs, '/', 1 ), 3, 4 ) ) WHEN ( ( MONTH ( sama_billdatebs ) >= 4 ) AND ( MONTH ( sama_billdatebs ) <= 12 ) ) THEN concat( substr( substring_index( sama_billdatebs, '/', 1 ), 2, 4 ), '/', CONVERT ( substr( ( substring_index( sama_billdatebs, '/', 1 ) + 1 ), 3, 4 ) USING latin1 ) ) END ) AS fiscalyrs, substring_index( sama_billdatebs, '/', 1 ) AS yrs, trim( LEADING '0' FROM substring_index( substring_index( sama_billdatebs, '/', 2 ), '/' ,- (1) ) ) AS mnth, dayofmonth( sama_billdatebs ) AS days, sd.sade_locationid,sd.sade_curqty issqty, sd.sade_unitrate unitprice, ROUND((sd.sade_curqty * sd.sade_unitrate),2) as issuamount FROM xw_sama_salemaster sm INNER JOIN xw_sade_saledetail sd ON sade_salemasterid = sm.sama_salemasterid WHERE sama_st = 'N' AND sama_status = 'O';

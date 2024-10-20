@@ -1,0 +1,284 @@
+.sidebar {
+    z-index: 10;
+    /*position: fixed;*/
+    position: absolute;
+    width: 220px;
+    /*width: 200px;*/
+    height: 100%;
+    transition: all ease 0.3s;
+}
+
+.sidebar .container-fluid {
+    padding: 0;
+}
+
+.container-fluid {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.header,
+.sidebar+.bread-crumb,
+#page-wrapper {
+    position: inherit;
+    /*margin: 0 0 0 200px;*/
+    margin: 0 0 0 220px;
+    transition: all ease 0.3s;
+}
+
+footer.footer {
+    margin-left: 220px;
+    transition: all ease 0.3s;
+   
+    z-index: 9999;
+}
+
+.top-left-part {
+    min-height: 60px;
+    transition: all ease 0.3s;
+}
+
+.top-left-part a {
+    padding: 10px 15px;
+    display: inline-block;
+    transition: all ease 0.3s;
+}
+
+a.logo img {
+    max-width: 100%;
+    max-height: 55px;
+}
+
+.nav-second-level.collapse.in,
+.navbar-default.sidebar.menu ul.nav {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.nav-second-level.collapse.in,
+.navbar-default.sidebar.menu ul.nav li {
+    display: block;
+    position: relative;
+    float: none;
+}
+
+.sidebar .arrow {
+    top: 17px;
+    right: 10px;
+    transition: all ease 0.3s;
+}
+
+#side-menu li:hover ul.collapse,
+#side-menu li:hover ul.collapse li:hover ul.nav-third-level {
+    height: auto !important;
+}
+
+.nav-second-level.collapse.in,
+.navbar-default.sidebar.menu ul.nav li {
+    width: 100%;
+    display: inline-block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.navbar-default.sidebar.menu ul.nav li.dropdown.open {
+    border-right: 5px solid #1ABB9C;
+    border-bottom: 0;
+    transition: all ease 0.3s;
+}
+
+.open>.dropdown-menu {
+    display: block;
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+#side-menu ul.dropdown-menu {
+    width: 100%;
+    border: none;
+    background: #2f4050;
+    padding: 0;
+}
+
+#side-menu ul.dropdown-menu li {
+    background-color: rgba(0, 0, 0, 0.18);
+}
+
+#side-menu li a {
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 11px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+ul#side-menu a,
+ul#side-menu .home a {
+    padding: 10px 25px 10px 25px;
+    transition: all ease 0.3s;
+}
+
+ul#side-menu .home a {
+    font-size: 13px;
+}
+
+ul#side-menu .home a i {
+    font-size: 15px;
+}
+
+#side-menu ul.dropdown-menu li a {
+    border-left: 2px solid rgba(0, 0, 0, 0.18);
+}
+
+#side-menu ul.dropdown-menu li a {
+    padding: 8px 10px 8px 35px;
+    font-size: 11px;
+}
+
+#side-menu li a i {
+    width: 15px;
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    transition: all ease 0.3s;
+}
+
+.mini-sidebar #side-menu li a i {
+    left: 25px;
+    transition: all ease 0.3s;
+}
+
+#side-menu .dropdown-menu a i {
+    top: 10px;
+    left: 20px;
+    font-size: 11px;
+}
+
+.navbar-default.sidebar.menu.green {
+    background: none;
+    background-color: #2A3F54;
+}
+
+.side_panel_toggle {
+    position: absolute;
+    top: 0px;
+    right: -20px;
+    font-size: 18px;
+    height: 40px;
+    display: inline-block;
+    z-index: 1;
+    width: 40px;
+    background-color: #1ab899;
+    color: #fff;
+    text-align: center;
+    border-radius: 45px;
+    transition: all ease 0.3s;
+}
+
+a.side_panel_toggle i {
+    line-height: 43px;
+}
+
+a.side_panel_toggle:hover,
+a.side_panel_toggle:focus,
+a.side_panel_toggle:active {
+    color: #fff;
+}
+
+.breadcrumb>li+li:before {
+    color: #c1c1c1;
+}
+.navbar-default.sidebar.menu.green ul.mblmenu > .dropdown > .dropdown-toggle:after {
+    content:'' !important;
+}
+.navbar-default.sidebar.menu.green ul.mblmenu >.dropdown > .dropdown-toggle {
+    padding: 18px 10px !important;
+    font-size: 15px !important;
+}
+.navbar-default.sidebar.menu.green ul.mblmenu >.dropdown > .dropdown-toggle > i {
+    left: 15px !important
+}
+.navbar-default.sidebar.menu.green ul.mblmenu > .dropdown  .dropdown-menu {
+    top:5px !important;
+}
+.navbar-default.sidebar.menu.green ul.mblmenu  .dropdown-menu > .dropdown > .dropdown-toggle:after {
+    top:8px !important;
+}
+.navbar-default.sidebar.menu.green ul.mobilemenu > .dropdown  .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    padding-left: 5px !important
+}
+.navbar-default.sidebar.menu.green ul.mobilemenu  .dropdown-menu > .dropdown > .dropdown-menu > li {
+    z-index: 99
+}
+.navbar-default.sidebar.menu.green ul.mblmenu > li > ul{
+    transform: none !important;
+    left: 100% !important
+}
+@media (max-width: 767px) {
+    .top-left-part {
+        min-height: unset;
+    }
+
+    .side_panel_toggle {
+        top: 5px;
+    }
+
+    .top-left-part a {
+        margin-top: 0px !important;
+    }
+
+    .des-header {
+        text-align: center;
+    }
+
+    .header-right {
+        text-align: center;
+    }
+
+    .clock {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .select-language {
+        margin-top: 0px;
+    }
+
+    .select-box {
+        margin-bottom: 5px;
+    }
+}
+
+@media(min-width: 767px) {
+
+    /*New css*/
+    /*.small{min-height: 800px;}
+.small .sidebar {position: absolute;}
+.mobilemenu .dropdown-menu{position: static;top: unset;left: unset;float: none;}
+.mobilemenu .dropdown-submenu .dropdown-menu{background: #131010 !important;margin-top: 0px;margin-bottom: 0px;} 
+.mobilemenu .dropdown-submenu>a:after{transform: rotate(90deg);margin-right: 5px;border-left-color:#fff;}
+.slimscroll-menu {overflow-y: scroll;overflow-x: hidden;height: 100%;}
+.slimscroll-menu::-webkit-scrollbar {width: 5px;height: 10px;}
+.slimscroll-menu::-webkit-scrollbar-track {background: #f1f1f1;}
+.slimscroll-menu::-webkit-scrollbar-thumb {background: #131010;border-radius: 4px;}
+.slimscroll-menu::-webkit-scrollbar-thumb:hover {background: #555;}
+.sidebar_menu .slimscroll-menu{overflow: unset !important;}*/
+}
+/*.mobilemenu ul.dropdown-menu{
+	position: unset !important;
+}*/
+.mobilemenu .dropdown-submenu.open>a:after{
+	transform: rotate(90deg);	
+}
+.mobilemenu{
+	max-height: 100vh;
+	overflow: scroll;
+} 
+.mobilemenu::-webkit-scrollbar { 
+    display: none; 
+}
+/*.menu.green.sidebar_menu{
+	min-height: unset;
+	overflow: unset;
+}*/

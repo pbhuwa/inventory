@@ -1,0 +1,39 @@
+
+<form method="post" id="FormMenu" action="<?php echo base_url('dental/chif_complain/save_chif_complain'); ?>" class="form-material form-horizontal form" data-reloadurl='<?php echo base_url('dental/chif_complain/form_chif_complain'); ?>'>
+<input type="hidden" name="id" value="<?php echo!empty($chif_complain_data[0]->chco_chiefcomplainid)?$chif_complain_data[0]->chco_chiefcomplainid:'';  ?>">
+                                <div class="form-group">
+                                <div class="col-md-12">
+                                 <label for="example-text">Chief Complain:
+                                    </label>
+                                    <input type="text" id="example-text" name="chco_chiefcomplain" class="form-control" placeholder="Chief Complain" value="<?php echo !empty($chif_complain_data[0]->chco_chiefcomplain)?$chif_complain_data[0]->chco_chiefcomplain:''; ?>">
+
+                                </div>
+                                <br>	<br>	<br>	
+                                  
+                              <div class="col-md-12">
+                                 <label for="example-text">Description:
+                                    </label><textarea style="width: 100%" name="chco_description" class="form-control" cols="2" rows="3" ><?php echo !empty($chif_complain_data[0]->chco_description)?$chif_complain_data[0]->chco_description:''; ?></textarea>
+
+                                </div>
+                                <br>	<br>	<br>	
+
+                                <div class="col-md-12">
+                                 <label for="example-text">Is Active :
+                                    </label>
+                                    <?php $is_active=!empty($chif_complain_data[0]->chco_isactive)?$chif_complain_data[0]->chco_isactive:''; ?>
+                                    <input type="radio" name="chco_isactive" value="Y" checked="checked">Yes
+                                    <input type="radio" name="chco_isactive" value="No" <?php if($is_active=='N') echo "checked=checked";?>>No
+                                    
+
+
+                                </div>
+
+                                </div>
+                                <br>	<br>	<br>	<br>	
+
+                                <button type="submit" class="btn btn-info waves-effect waves-light m-r-10 save"  data-operation='<?php echo !empty($chif_complain_data)?'update':'save' ?>'  ><?php echo !empty($chif_complain_data)?'Update':'Save' ?></button>
+                                 <button type="reset" class="btn btn-inverse waves-effect waves-light">Reset</button> 
+                                <div id="ResponseSuccess" class="waves-effect waves-light m-r-10 text-success"></div>
+                                 <div id="ResponseError" class="waves-effect waves-light m-r-10 text-danger"></div>
+
+                            </form>

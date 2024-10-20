@@ -1,0 +1,185 @@
+@media only screen and (max-width:1200px) {
+	.container-fluid { padding-left:30px; padding-right:30px; }
+}
+@media only screen and (max-width:1024px) {
+	.container-fluid { padding-left:15px; padding-right:15px; }
+	.bio_dash .head-info .hi_left { width: 25%; }
+	.bio_dash .head-info .hi_right h4 { font-size: 14px; }
+} 
+@media only screen and (max-width:992px) {
+	.header .bg-title .col-sm-2.pull-right { padding-left:0; }
+	.header .bg-title .col-sm-2:first-child {  width:8.33333333%; }
+	.header .bg-title .col-sm-8.text-center { text-align:left; width:58.33333333%; }
+	.header .bg-title .col-sm-2.pull-right { width:33.33333333%; }
+	.header .bg-title .col-sm-2.pull-right .profile-pic { text-align: right; }
+	.bio_dash .col-sm-6 { width:100%; }
+  
+
+	.resp_xs .col-sm-6 input[type=radio] { margin-bottom:13px; }
+	.bio_dash .head_sum.stock_head li { width:33.33333333%; }
+}
+@media only screen and (width:768px) {
+	.search_pm_data ul.pm_data {-webkit-column-count: 1; -moz-column-count: 1; column-count: 1; }
+	.mtop_5-xs { margin-top:5px; }
+}
+@media only screen and (max-width:767px) {
+/*	.navbar-header a.home_link { display:block; }*/
+
+}
+@media only screen and ( max-width:736px ) {
+  .navbar-default .dropdown > .dropdown-toggle:after,.navbar-default .dropdown-menu .dropdown > .dropdown-toggle:after {
+  color: #008c69
+}
+.navbar-default .dropdown > .dropdown-toggle:after {
+  position: absolute;
+  right: 10px
+}
+	.navbar-default .navbar-toggle .icon-bar { background-color: #fff; }
+    .bg-title { position:relative;}
+    .sidebar-nav.navbar-collapse { 
+      position:absolute; left: 0; top: 35px; right: 0; z-index:1000; }
+    .navbar-collapse.collapsing #side-menu, #side-menu {  z-index: 1000; background: #ececec; border: 1px solid #ddd; box-shadow:0px 6px 14px 0px #0000002b; }
+    #side-menu li { display:block; }
+    #side-menu li a { color:#217c5d; padding:10px 30px 10px 15px; }
+    .navbar-nav { margin-left:0; margin-right:0;}
+   .navbar-nav .open >  .dropdown-menu, .navbar-nav .show >  .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+    float: none;
+    width: auto;
+    margin-top: 0;
+   }
+    #side-menu ul.dropdown-menu { 
+      background-color:#dfdfdf; padding:0; border-color:gainsboro; }   
+    #side-menu ul.dropdown-menu li { background-color:#0000000f;}
+    #side-menu ul.dropdown-menu li a { font-size:12px; }
+    #side-menu ul.dropdown-menu li a:hover { border-color:#2c9e77; }
+    #side-menu ul.dropdown-menu li ul.dropdown-menu {
+      background-color: #ffffff 
+    }
+
+	ul.checktree { padding-left:5px; font-size:12px; }
+	ul.checktree ul { padding-left:10px; }
+	ul.checktree li { padding-bottom: 10px; }
+	ul.checktree li li { margin-bottom:0; }
+	span.inline-check { min-width: 90%; }
+	li.checkli span.inline-check.mw_100 { padding-left: 12px; }
+}
+@media only screen and (max-width:667px) {
+	#page-wrapper .container-fluid { padding-left:5px; padding-right:5px; }
+
+	table.res_vert_table {
+    /*border: 0;*/
+  }
+  
+  table.res_vert_table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table.res_vert_table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+
+}
+	table.dataTable.res_vert_table tbody tr {
+    background-color:#fdfdfd;
+  }
+  table.dataTable.res_vert_table .form-control {
+	background-color:#fff;
+  }
+  
+  table.res_vert_table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+    min-height:20px;
+  }
+  
+  table.res_vert_table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table.res_vert_table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table.res_vert_table td:last-child {
+    border-bottom: 0;
+  }
+
+  table.res_vert_table.table-bordered tbody td { border:0; }
+}
+@media only screen and (max-width:600px) {
+	.header .bg-title .col-xs-3:first-child { width:15%; }
+	.header .bg-title .col-xs-6.text-center { width:85%; }
+	.header .bg-title .col-xs-3.pull-right { width:100%; }
+	.header .bg-title .web_ttl h2 { font-size:20px; }
+	.header .bg-title .web_ttl h5 { font-size:12px; }
+	.navbar-top-links>li>a { margin-top:0; }
+	.header .bg-title .col-xs-3.pull-right .navbar-top-links { width:100%; margin-top:5px; }
+	.header .bg-title .col-xs-3.pull-right .navbar-top-links li { width:100%; }
+	.header .bg-title .col-xs-3.pull-right .profile-pic { float:right; }
+	.header .bg-title .navbar-top-links span { float:left; }
+}
+@media only screen and (max-width:500px) {
+	.bio_dash .head_sum li { width:50%; }
+	.resp_xs .col-xs-6 { width:100%; }
+	.resp_xs .col-xs-6 input[type=radio] { margin-bottom:13px; }
+	.bio_dash .head_sum.stock_head li { width:50%; }
+}
+@media only screen and ( max-width:400px) {
+	/*.header .bg-title .col-xs-3.pull-right b { display:block; }*/
+	.search_pm_data ul.pm_data {-webkit-column-count: 1; -moz-column-count: 1; column-count: 1; }
+}
+@media(max-width: 992px){
+   .header .bg-title .col-xs-12:first-child .logo{ display:none; }
+   .location{width: 100%;text-align: center;padding-left: 0px;margin-bottom: 5px;}
+}
+@media only screen and (max-width:380px) {
+	/* .header .bg-title .col-xs-3:first-child { display:none; } */
+	.header .bg-title .col-xs-6.text-center { width:100%; text-align:center; }
+}
+@media only screen and (min-width: 767px){
+  .h-btn{display: none;}
+}
+@media only screen and (max-width: 767px){
+  .header{
+    display: none;
+  }
+  .h-btn{
+    display: inline-block;
+    position: relative;
+    left: 40px;
+    top: -15px;
+    color: #fff;
+    font-size: 30px;
+    border-left: 1px solid #ddd;
+    padding-left: 15px;
+  }
+  .h-btn:active{
+    color: #fff;
+
+  }
+  .h-btn:hover{
+    color: #fff;
+  }
+  .header.slow{
+    display: block !important;
+  }
+  .h-btn.up .fa{
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+}

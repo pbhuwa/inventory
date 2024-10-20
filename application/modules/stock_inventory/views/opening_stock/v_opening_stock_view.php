@@ -1,0 +1,1 @@
+<input type="hidden" name="masterid" value="<?php echo !empty($mastdetails[0]->trma_trmaid)?$mastdetails[0]->trma_trmaid:'';?>">

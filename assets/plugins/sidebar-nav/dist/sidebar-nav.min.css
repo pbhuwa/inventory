@@ -1,0 +1,247 @@
+/*
+ * metismenu - v1.1.3
+ * Easy menu jQuery plugin for Twitter Bootstrap 3
+ * https://github.com/onokumus/metisMenu
+ *
+ * Made by Osman Nuri Okumus
+ * Under MIT License
+ */
+
+.arrow {
+    float: right;
+    line-height: 1.42857
+}
+
+.glyphicon.arrow:before {
+    content: "\e079"
+}
+
+.active>a>.glyphicon.arrow:before {
+    content: "\e114"
+}
+
+.fa.arrow:before {
+    content: "\f104"
+}
+
+.active>a>.fa.arrow:before {
+    content: "\f107"
+}
+
+.plus-times {
+    float: right
+}
+
+.fa.plus-times:before {
+    content: "\f067"
+}
+
+.active>a>.fa.plus-times {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg)
+}
+
+.plus-minus {
+    float: right
+}
+
+.fa.plus-minus:before {
+    content: "\f067"
+}
+
+.active>a>.fa.plus-minus:before {
+    content: "\f068"
+}
+.white-box .box-title{
+	background-color: #2A3F54 !important;
+	background: #2A3F54 !important;
+}
+.sidebar_menu{
+	
+	width: 50px !important;
+	transition:all ease 0.1s;
+}
+
+#page-wrapper.margin20,
+.header.margin20,
+.bread-crumb.margin20,
+.footer.margin20{
+	margin: 0 0 0 50px !important;
+}
+.mblmenu .mbl_link{
+	display: none;
+}
+ul#side-menu.mblmenu a, ul#side-menu.mblmenu .home a{
+	padding:30px 18px 10px 35px;
+}
+.mblmenu .arrow{
+	top: 13px !important;
+	-moz-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+.mblmenu .dropdown-menu{
+	width: 220px !important;
+	left: 50px;
+	top: 0%;
+}
+.mblmenu .dropdown-menu .mbl_link{
+	display: block;
+
+}
+.mblmenu .dropdown-submenu>a:after{
+    position: absolute;
+    right: 16px;
+    margin-top: 0px;
+    margin-right: 0px;
+    top: 10px;
+    color: #fff;
+}
+.mblmenu .dropdown-submenu>.dropdown-menu{
+	top: 7px;
+}
+.sidebar_menu .logo{
+	display: none;
+}
+.navbar-default.sidebar.menu ul.mblmenu{
+	margin-top: 0px !important;
+}
+
+.mblmenu .home{
+	display: none !important;
+}
+/*.select-language li a.active,
+.notification-box a span
+{
+	background: #2A3F54 !important;
+}*/
+.modal-header{
+	background-color: #2A3F54 !important;
+}
+.modal-content{
+	border: 2px solid #2A3F54 !important; 
+}
+.modal-dialog.modal-md{
+	max-width: 80% !important;
+	/*margin: 0 auto;*/
+}
+.dropdown-user{
+	border:1px solid #a9a9a9;
+	background: #eae6e6;
+	margin-top: 10px !important;
+	padding: 0px;
+	
+}
+.dropdown-user::before{
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 0;
+	border: 0 solid transparent;
+	border-right-width: 10px;
+	border-left-width: 10px;
+	border-bottom: 10px solid #eae6e6;
+	top: -10px;
+	left: -webkit-calc(50% - 10px);
+	left: calc(50% - 10px);
+}
+.dropdown-user>li>a{
+	border-bottom: 1px solid #a9a9a9;
+}
+.dropdown-user>li:last-child a{
+	border-bottom: 0px;
+}
+.dropdown-user>li>a .fa{
+	padding-right: 10px;
+}
+@media(max-width: 767px){
+	.mbl_link{
+		margin-left: 20px;
+	}
+	.sidebar_menu{
+		width: 100% !important;
+	}
+	.mblmenu .arrow{
+		display: none;
+	}
+	.navbar-default {
+		position: relative;
+		width: 100% !important;
+	}
+	.sidebar{
+		position: relative !important;
+		width: 100% !important;
+		height: auto !important;
+	}
+	#page-wrapper.margin20, .header.margin20, .bread-crumb.margin20, .footer.margin20{
+		margin: 0px !important;
+	}
+	.mblmenu .mbl_link{
+		display: inline-block;
+	}
+	ul#side-menu.mblmenu a, ul#side-menu.mblmenu .home a{
+		padding: 10px 30px 10px 15px;
+	}
+	.side_panel_toggle{
+		right: 20px !important;
+	}
+	.sidebar_menu .logo{
+		display: block;
+		margin-left: 20px;
+		margin-top: 5px;
+	}
+	.navbar-nav{
+		display: none !important;
+	}
+	.navbar-nav.mobilemenu{
+		display: block !important;
+	}
+	.header, .sidebar+.bread-crumb, #page-wrapper,
+	footer.footer{
+		margin: 0px !important;
+	}
+	.nav-second-level.collapse.in, .navbar-default.sidebar.menu ul.nav{
+		margin: 0px !important;
+		padding: 0px !important;
+	}
+	.top-left-part a{
+		margin-left: 20px !important;
+		margin-top: 13px !important;
+	}
+	.top-left-part a .fa{
+		font-size: 30px;
+	}
+	.header .pull-right{
+		float: none !important;
+		/*text-align: right;*/
+		width: 100%;
+	}
+	.select-box{
+		float: left;
+	}
+	.notification-box{
+		float: right;
+	}
+	.modal-dialog.modal-md{
+		max-width: 720px !important;
+	}
+	/*.mobile-header {
+		margin-top: 15px;
+		display: block;
+	}*/
+	.dropdown-user::before{
+		position: static;
+		border:0px;
+	}
+	.show-notifications{
+		left: -222px !important;
+	}
+	.show-notifications{
+		right: 0px !important;
+	}
+
+}

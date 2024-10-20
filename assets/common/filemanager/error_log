@@ -1,0 +1,7 @@
+[20-Mar-2015 06:55:47 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'file ../../../uploads/images/REGLOGO_FA_ENG.BMP is missing or invalid' in /home/alkahospitalcom/public_html/myadmin/libraries/filemanager/include/php_image_magician.php:325
+Stack trace:
+#0 /home/alkahospitalcom/public_html/myadmin/libraries/filemanager/include/utils.php(47): imageLib->resizeImage(122, 91, 'crop')
+#1 /home/alkahospitalcom/public_html/myadmin/libraries/filemanager/upload.php(65): create_img_gd('../../../upload...', '../../../thumbs...', 122, 91)
+#2 {main}
+  thrown in /home/alkahospitalcom/public_html/myadmin/libraries/filemanager/include/php_image_magician.php on line 325
+[16-Jul-2015 17:14:02 UTC] PHP Warning:  chmod(): No such file or directory in /home/alkahospitalcom/public_html/myadmin/libraries/filemanager/upload.php on line 61

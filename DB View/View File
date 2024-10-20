@@ -1,0 +1,34 @@
+
+
+
+
+
+
+
+CREATE OR REPLACE VIEW vw_pm_rec
+AS
+
+select `xw_pmta_pmtable`.`pmta_equipid` AS `pmta_equipid`,`xw_pmta_pmtable`.`pmta_pmdatead` AS `pmta_pmdatead`,`xw_pmta_pmtable`.`pmta_pmdatebs` AS `pmta_pmdatebs`,sum((case when (`xw_pmta_pmtable`.`pmta_ispmcompleted` = 0) then 1 else 0 end)) AS `not_comp`,0 AS `comp` from `xw_pmta_pmtable` group by `xw_pmta_pmtable`.`pmta_equipid`,`xw_pmta_pmtable`.`pmta_pmdatead` union select `xw_pmta_pmtable`.`pmta_equipid` AS `pmta_equipid`,`xw_pmta_pmtable`.`pmta_pmdatead` AS `pmta_pmdatead`,`xw_pmta_pmtable`.`pmta_pmdatebs` AS `pmta_pmdatebs`,0 AS `not_comp`,sum((case when (`xw_pmta_pmtable`.`pmta_ispmcompleted` = 1) then 1 else 0 end)) AS `comp` from `xw_pmta_pmtable` group by `xw_pmta_pmtable`.`pmta_equipid`,`xw_pmta_pmtable`.`pmta_pmdatead`
+
+CREATE OR REPLACE VIEW xw_vw_categoryreport
+AS
+
+select `x`.`maty_material` AS `maty_material`,`x`.`billdatebs` AS `billdatebs`,`x`.`dept_depid` AS `dept_depid`,`x`.`itli_materialtypeid` AS `itli_materialtypeid`,`x`.`dept_depname` AS `dept_depname`,`x`.`dept_depcode` AS `dept_depcode`,sum(`x`.`VALUE`) AS `issuevallue`,sum(`x`.`ReturnValue`) AS `ReturnValue`,sum((`x`.`VALUE` - `x`.`ReturnValue`)) AS `netvalue` from `vw_issue_category` `x` group by `x`.`dept_depcode`,`x`.`dept_depname`,`x`.`itli_materialtypeid`,`x`.`dept_depid`,`x`.`maty_material`
+
+CREATE OR REPLACE VIEW xw_vw_depissue
+AS
+select `sm`.`sama_depid` AS `departmentid`,`il`.`itli_itemlistid` AS `itli_itemlistid`,`il`.`itli_catid` AS `itli_catid`,`il`.`itli_typeid` AS `itli_typeid`,(sum(`sd`.`sade_qty`) * `sd`.`sade_unitrate`) AS `totalamount`,`il`.`itli_itemcode` AS `itli_itemcode`,`il`.`itli_itemname` AS `itli_itemname`,`ut`.`unit_unitname` AS `unit_unitname`,`sd`.`sade_unitrate` AS `sade_unitrate`,`sm`.`sama_billdatead` AS `sama_billdatead`,`sm`.`sama_billdatebs` AS `sama_billdatebs`,sum(`sd`.`sade_qty`) AS `qty` from (((`xw_sama_salemaster` `sm` left join `xw_sade_saledetail` `sd` on((`sd`.`sade_salemasterid` = `sm`.`sama_salemasterid`))) left join `xw_itli_itemslist` `il` on((`il`.`itli_itemlistid` = `sd`.`sade_itemsid`))) left join `xw_unit_unit` `ut` on((`ut`.`unit_unitid` = `il`.`itli_unitid`))) group by `sm`.`sama_depid`,`il`.`itli_itemlistid`,`il`.`itli_catid`,`il`.`itli_typeid`,`ut`.`unit_unitname`,`sd`.`sade_unitrate`,`sm`.`sama_billdatead`,`sm`.`sama_billdatebs`,`il`.`itli_itemcode`,`il`.`itli_itemname`
+
+CREATE OR REPLACE VIEW xw_vw_depissueii
+AS
+
+select `sm`.`sama_depid` AS `department`,`il`.`itli_itemlistid` AS `itli_itemlistid`,`il`.`itli_materialtypeid` AS `itli_materialtypeid`,sum(`sd`.`sade_qty`) AS `qty`,`ut`.`unit_unitname` AS `unit_unitname`,`sd`.`sade_unitrate` AS `sade_unitrate`,sum((`sd`.`sade_qty` * `sd`.`sade_unitrate`)) AS `totalamount`,`sm`.`sama_billdatead` AS `sama_billdatead`,`sm`.`sama_billdatebs` AS `sama_billdatebs`,`il`.`itli_itemname` AS `itli_itemname`,`il`.`itli_itemcode` AS `itli_itemcode` from (((`xw_sama_salemaster` `sm` left join `xw_sade_saledetail` `sd` on((`sd`.`sade_salemasterid` = `sm`.`sama_salemasterid`))) left join `xw_itli_itemslist` `il` on((`il`.`itli_itemlistid` = `sd`.`sade_itemsid`))) left join `xw_unit_unit` `ut` on((`ut`.`unit_unitid` = `il`.`itli_unitid`))) group by `sm`.`sama_depid`,`il`.`itli_itemlistid`,`il`.`itli_materialtypeid`,`ut`.`unit_unitname`,`sd`.`sade_unitrate`,`sm`.`sama_billdatebs`,`sm`.`sama_billdatead`,`il`.`itli_itemname`,`il`.`itli_itemcode`
+
+
+CREATE OR REPLACE VIEW  xw_vw_locationwisestock
+AS
+select `td`.`trde_itemsid` AS `trde_itemsid`,`td`.`trde_locationid` AS `trde_locationid`,sum(`td`.`trde_issueqty`) AS `issqty` from (`xw_trma_transactionmain` `tm` left join `xw_trde_transactiondetail` `td` on((`tm`.`trma_trmaid` = `td`.`trde_trmaid`))) where ((`td`.`trde_issueqty` > 0) and (`tm`.`trma_received` = '1') and (`td`.`trde_status` = 'O')) group by `td`.`trde_itemsid`,`td`.`trde_locationid`
+
+CREATE OR REPLACE VIEW xw_vwpmdata
+AS
+select `vw_pm_rec`.`pmta_equipid` AS `pmta_equipid`,`vw_pm_rec`.`pmta_pmdatead` AS `pmta_pmdatead`,`vw_pm_rec`.`pmta_pmdatebs` AS `pmta_pmdatebs`,month(`vw_pm_rec`.`pmta_pmdatead`) AS `month`,year(`vw_pm_rec`.`pmta_pmdatead`) AS `year`,week(`vw_pm_rec`.`pmta_pmdatead`,0) AS `week`,dayofmonth(`vw_pm_rec`.`pmta_pmdatead`) AS `days`,sum(`vw_pm_rec`.`not_comp`) AS `not_comp`,sum(`vw_pm_rec`.`comp`) AS `comp` from `vw_pm_rec` group by `vw_pm_rec`.`pmta_equipid`,`vw_pm_rec`.`pmta_pmdatead`

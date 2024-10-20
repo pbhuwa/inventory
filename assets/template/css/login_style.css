@@ -1,0 +1,234 @@
+body {
+    width: 100%;
+    position: relative;
+    font-family: 'PT Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:focus {
+    text-decoration: none;
+}
+
+.form-wrapper {
+    height: 100vh ;
+    position: relative;
+    z-index: 9999;
+    background-size: cover;
+    background-position: center center;
+}
+.wrapper{
+    
+}
+.form-wrapper::after {
+    position: absolute;
+    content: "";
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+.pos-vertical-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.form-inner {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 35px 25px;
+    position: relative;
+    z-index: 9999;
+    width: 850px;
+    margin: 0 auto;
+}
+
+.branch-logo {
+    margin-bottom: 20px;
+}
+
+.main-logo img,
+.branch-logo img {
+    max-width: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+/*.login-form{
+    border-left: 1px solid #ddd;
+    padding-left: 30px;
+}*/
+
+.v-border {
+    position: relative;
+}
+
+.v-border::after {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 100%;
+    background: #ddd;
+    top: 0px;
+    left: 45%;
+
+}
+
+.company-info h3 {
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.company-info p {
+    margin-bottom: 7px;
+    font-size: 16px;
+}
+
+.login-form h5 {
+    font-size: 17px;
+}
+
+.login-form h5 a {
+    display: inline-block;
+    padding-left: 5px;
+    font-size: 17px;
+}
+
+.login-form form {
+    margin-top: 20px;
+}
+
+.login-form form .form-control {
+    background: transparent;
+    border: 1px solid #007bff;
+    color: #333;
+    border-radius: 0px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 13px;
+}
+
+.login-form form .btn-primary {
+    width: 100%;
+    height: 42px;
+    margin-bottom: 30px;
+    /*margin-top: 10px;*/
+}
+
+
+/*@media(max-height: 600px){
+    .form-wrapper{
+        height: 100%;
+    }
+}*/
+
+.pos-center {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 44%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.login-form form .form-control::placeholder {
+    color: #333;
+    opacity: 1;
+}
+
+.login-form form .form-control:-ms-input-placeholder {
+    color: #333;
+}
+
+.login-form form .form-control::-ms-input-placeholder {
+    color: #333;
+}
+
+.form-header h1 {
+    font-size: 22px;
+    margin-bottom: 40px;
+    margin-top: 15px;
+}
+.branch-logo img {
+    max-width: 150px;
+    width: 100%;
+    object-fit: cover;
+}
+/*.form-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}*/
+@media(max-width: 992px){
+    .form-inner{
+        width: 100%;
+    }
+}
+@media(max-width: 767px){
+    .v-border::after{
+        position: relative;
+        background: transparent;
+        width: unset;
+    }
+    .pos-vertical-center{
+        position: relative;
+        left: unset;
+        top: unset;
+        transform: unset;
+    }
+    .pos-center{
+        position: relative;
+        top: unset;
+        left: unset;
+        transform: unset;
+    }
+    .form-header{
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 20px;
+    } 
+    .login-form{
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+        margin-top: 20px;
+    }
+    .form-wrapper{
+        height: 100%;
+    }
+    .form-inner{
+        padding: 10px;
+    }
+    .form-header h1{
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        margin-top: 5px;
+    }
+    .company-info h3{
+        font-size: 17px;
+        font-weight: 600;
+    }
+    .company-info p{
+        font-size: 15px;
+    }
+    .form-inner{
+        padding-top: 10px;
+    }
+   /*  .form-header h1{
+       margin-bottom: 20px;
+   } */
+}
